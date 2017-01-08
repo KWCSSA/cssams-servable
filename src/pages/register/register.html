@@ -1,0 +1,59 @@
+
+
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>注册</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="login">
+
+<div>
+
+
+<form #authForm = "ngForm" (ngSubmit)="onSubmit(authForm.value)">
+  	<ion-list padding>
+
+  <ion-item>
+    <ion-label>First Name</ion-label>
+    <ion-input [(ngModel)] = "user.fname" type="text" pattern = "^[A-Za-z]+$" required name="fname" #fname = "ngModel"></ion-input>
+  </ion-item>         
+        <div style="color:red" *ngIf="!fname.valid  && fname.touched" 
+            class="error-box">* First name should be all letters!</div> 
+
+  <ion-item>
+    <ion-label>Last Name</ion-label>
+    <ion-input type="text" [(ngModel)] = "user.lname" pattern = "^[A-Za-z]+$" required name="lname" #lname = "ngModel"></ion-input>
+  </ion-item>     
+        <div style="color:red" *ngIf="!lname.valid  && lname.touched" 
+            class="error-box">* Last name should be all letters!</div> 
+
+</ion-list>
+   
+<ion-list padding>
+
+   <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="email" [(ngModel)] = "user.email" name="email" #email = "ngModel"></ion-input>
+  </ion-item>    
+        <div style="color:red" *ngIf="!email.valid && email.touched" 
+            class="error-box">* Email is not valid!</div> 
+  <ion-item>
+    <ion-label>密码</ion-label>
+    <ion-input type="password" required minlength = "6" [(ngModel)] = "user.password" name="password" #password = "ngModel"></ion-input>
+  </ion-item>
+        <div *ngIf="!password.valid && password.touched" 
+            class="error-box" style="color:red">* Min Password length is 6!</div>   
+  <ion-item>
+    <ion-label>重新输入密码</ion-label>
+    <ion-input type="password" required [(ngModel)] = "user.repassword" name="repassword" #repassword = "ngModel"></ion-input>
+  </ion-item>
+     <div style="color:red" class="error-box" [hidden] = "!(password.value!=repassword.value && repassword.touched)" >两次输入不一致</div>
+</ion-list>
+
+<div padding>
+  <button ion-button type="submit" [disabled]="!authForm.valid || password.value!=repassword.value" block>注册!</button>
+</div>
+</form>
+</div>
+</ion-content>

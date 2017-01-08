@@ -1,0 +1,39 @@
+
+page-catlist{
+
+	.item-md ion-avatar img {
+		max-width: 7.2rem;
+		max-height: 7.2rem;
+	}
+
+
+	button[fab].fab-map {
+	 top: calc(100% - 35px);
+	 z-index: 50;
+}
+
+
+	ion-card.adv-map p {
+  		font-size: 0.7em !important;
+		}
+
+
+	.item-bold {
+	  font-weight: bold;
+	}
+
+.huanhang {
+    overflow: initial;
+    white-space: initial;
+}
+.red {
+	color: red;
+}
+
+.navigate {
+	display:inline;
+}
+
+
+}
+

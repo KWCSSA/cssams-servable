@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>分类</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="Category">
+<ion-card>
+  <ion-list *ngIf = "ready">
+    <button ion-item (click) = "toList('Restaurant')">
+      <ion-icon name="wine" item-left ></ion-icon>
+      餐饮
+    </button>
+
+    <button ion-item (click) = "toList('Shopping')">
+      <ion-icon name="cart" item-left ></ion-icon>
+      购物
+    </button>
+
+
+    <button ion-item (click) = "toList('Entertainment')">
+      <ion-icon name="game-controller-a" item-left ></ion-icon>
+      娱乐
+    </button>
+
+    <button ion-item (click) = "toList('Service')">
+      <ion-icon name="cash" item-left ></ion-icon>
+      生活服务
+    </button>
+
+   
+  </ion-list>
+</ion-card>
+
+</ion-content>

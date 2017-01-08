@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+
+      <ion-title>贴墙</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click) = "post()">
+          <ion-icon name="paper-plane"></ion-icon>
+        </button>
+      </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="WallPage">
+ <ion-item>
+   <ion-label floating>贴纸上的字儿</ion-label>
+   <ion-textarea [(ngModel)]="content"></ion-textarea>
+ </ion-item>
+</ion-content>

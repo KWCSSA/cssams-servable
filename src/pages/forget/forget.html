@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>忘记密码</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="forget">
+
+<form #emailForm = "ngForm" (ngSubmit)="forget(emailForm.value)">
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="email" [(ngModel)] = "email.email" name="email" required></ion-input>
+    <div style="color:red" *ngIf="!email.valid && email.touched" 
+    class="error-box">* Email is not valid!</div>
+  </ion-item>
+<div padding>
+  <button ion-button type="submit" [disabled]="!emailForm.valid || timer.running" block>发送修改密码邮件</button>
+  <p style="color:red" *ngIf = "timer.running"> 冷却时间：{{timer.time}} </p>
+</div>
+
+</form>
+
+</ion-content>

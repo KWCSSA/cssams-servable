@@ -1,0 +1,27 @@
+<!-- <ion-header>
+  <ion-navbar primary>
+    <ion-title>我的会员卡</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content padding class="Card">
+
+<ion-row padding>
+<ion-col>
+  <img class="centered" src="assets/images/logo.png" alt="Card">
+  </ion-col>
+</ion-row>
+
+<ion-row padding>
+  <img *ngIf = "localImageURL" class="centered" [src]="localImageURL" (error)="updateUrl()" alt="LocalCard">
+</ion-row>
+
+
+
+<ion-row padding>
+<p id="law">此会员卡最终解释权归KWCSSA所有<br>遇到问题请联系info@uwcssa.com</p>
+</ion-row>
+
+
+
+</ion-content>

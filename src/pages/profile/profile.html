@@ -1,0 +1,30 @@
+<!-- <ion-header>
+  <ion-navbar primary>
+    <ion-title>我</ion-title>
+  </ion-navbar>
+</ion-header> -->
+<ion-content class="Profile">
+
+<div padding>
+<p>会员卡号： {{idnum}}</p>
+<p>姓名： {{fname}}  {{lname}}</p>
+<p>Email：  {{email}}</p>
+</div>
+
+
+<div padding>
+  <button ion-button color="primary" block (click) = "resetPassword()" [disabled]="timer.running">修改密码</button>
+  <p style="color:red" *ngIf = "timer.running"> 冷却时间：{{timer.time}} </p>
+    <button ion-button block (click) = "logout()">登出</button>
+</div>
+
+
+
+<ion-row padding>
+<p id="law">
+	KWCSSA 会员卡 V1.1<br>© 2016 KWCSSA信息部
+</p>
+</ion-row>
+
+
+</ion-content>

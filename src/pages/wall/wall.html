@@ -1,0 +1,94 @@
+<ion-header>
+<ion-navbar no-border-bottom>
+<!--     <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="all">
+        最新
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        推荐
+      </ion-segment-button>
+    </ion-segment> -->
+    <ion-title>The Wall</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click) = "post()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+</ion-navbar>
+</ion-header>
+
+<ion-content class="Wall">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+<!-- <ion-list [virtualScroll]= "postings">
+<ion-item *virtualItem="let posting">
+<ion-card>
+	 <ion-card-header>
+       {{posting.user.fname}}&nbsp;{{posting.user.lname}}
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        {{posting.content}}
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+      	<p class="time">{{posting.createdAt | amTimeAgo}}</p>
+      </ion-col>
+      <ion-col text-right>
+      <button (click) = "seeComments(posting)" ion-button clear small color="primary" icon-left>
+          <ion-icon ios='ios-chatbubbles-outline' md='md-chatbubbles'></ion-icon>
+          {{posting.replies.length}}
+      </button>
+		<button ion-button clear small color="primary" icon-left>
+          <ion-icon name='heart-outline'></ion-icon>
+          {{posting.likes.length}}
+		</button>
+      </ion-col>
+    </ion-row>
+
+</ion-card>
+</ion-item>
+</ion-list> -->
+
+
+  <ion-card *ngFor = "let posting of postings; let i = index">
+     <ion-card-header class="grey">
+         {{posting.user.fname}}&nbsp;{{posting.user.lname}}
+      </ion-card-header>
+      <ion-card-content>
+        <h2>
+          {{posting.content}}
+        </h2>
+      </ion-card-content>
+
+      <ion-row no-padding>
+        <ion-col>
+          <p class="time grey">{{posting.createdAt | amTimeAgo}}</p>
+        </ion-col>
+        <ion-col text-right>
+        <button (click) = "seeComments(posting, i)" ion-button clear small color="primary" icon-left>
+            <ion-icon ios='ios-chatbubbles-outline' md='md-chatbubbles'></ion-icon>
+            {{posting.replies.length}}
+        </button>
+      <button (click) = "toggleLike(posting, i)" ion-button clear small color="primary" icon-left>
+            <ion-icon *ngIf="posting.likes.indexOf(_id) == -1" name='heart-outline'></ion-icon>
+            <ion-icon *ngIf="posting.likes.indexOf(_id) != -1" name='heart'></ion-icon>
+            {{posting.likes.length}}
+      </button>
+        </ion-col>
+      </ion-row>
+
+  </ion-card>
+
+
+ <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+</ion-content>

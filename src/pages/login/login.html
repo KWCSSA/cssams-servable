@@ -1,0 +1,39 @@
+<ion-content padding class="login">
+
+<div class="container">
+
+<ion-row padding>
+  <ion-col>
+    <img class="centered" src="assets/images/icon.png" alt="Card">
+  </ion-col>
+</ion-row>
+
+<form #authForm = "ngForm" (ngSubmit)="onSubmit(authForm.value)">
+  	<ion-list padding>
+
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input required type="text" [(ngModel)] = "user.email" name = "email" #email = "ngModel"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>密码</ion-label>
+    <ion-input required type="password" [(ngModel)] = "user.password" name = "password" #password = "ngModel"></ion-input>
+  </ion-item>
+
+</ion-list>
+
+<div>
+  <button ion-button color = "primary" type="submit" block>登陆</button>
+</div>
+</form>
+
+<button ion-button color = "primary" (click)="gtRegister()" block>注册</button>
+
+<ion-row padding >
+<a id="law" (click)="forget()" color = "blue">忘记了用户名密码？</a>
+</ion-row>
+
+
+</div>
+</ion-content>

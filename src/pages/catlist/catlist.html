@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>{{listName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="Catlist">
+
+<ion-card *ngFor = "let shop of list">
+
+<ion-list>
+  <ion-item >
+    <ion-avatar item-left>
+      <img *ngIf = "shop.localImageURL" class = "logo" [src]="shop.localImageURL" (error)="updateUrl(shop)">
+    </ion-avatar>
+    <h2 class = "huanhang">{{shop.title}}</h2>
+    <p class = "huanhang red" color="primary">{{shop.description}}</p>
+    <p *ngIf = "shop.address.length > 0" class = "huanhang">{{shop.address}}  <ion-icon color="blue" (click) = "navigate(shop)" name="compass"></ion-icon></p> 
+    <p class = "huanhang">{{shop.phone}}</p>
+    <p class = "huanhang">{{shop.time}}</p>
+  </ion-item>
+</ion-list>
+
+</ion-card>
+
+</ion-content>

@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>Comments</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content *ngIf = "posting" class="Posting">
+<br>
+<br>
+
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<ion-card>
+	 <ion-card-header class="grey">
+      {{posting.user.fname}}&nbsp;{{posting.user.lname}}
+    </ion-card-header>
+    <ion-card-content>
+      <h2>
+        {{posting.content}}
+      </h2>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+      	<p class="time grey">{{posting.createdAt | amTimeAgo}}</p>
+      </ion-col>
+      <ion-col text-right>
+      <button ion-button clear small color="primary" icon-left>
+          <ion-icon ios='ios-chatbubbles-outline' md='md-chatbubbles'></ion-icon>
+          {{posting.replies.length}}
+      </button>
+		<button ion-button clear small color="primary" icon-left>
+          <ion-icon name='heart-outline'></ion-icon>
+          {{posting.likes.length}}
+		</button>
+      </ion-col>
+    </ion-row>
+</ion-card>
+
+
+  <ion-card *ngFor="let reply of posting.replies">
+    <ion-row>
+      <ion-col>
+        <h2 class="pad-left grey">{{reply.user.fname}}&nbsp;{{reply.user.lname}}</h2>
+      </ion-col>
+      <ion-col text-right>
+        <h2 class="pad-right time grey">{{reply.createdAt | amTimeAgo}}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h2 class="pad-left">{{reply.content}}</h2>
+      </ion-col>
+    </ion-row>
+    </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-input [(ngModel)] = "comment" placeholder="Input your thoughts here..." type="text"></ion-input>
+
+    <ion-buttons end>
+      <button (click) = "postComment()" ion-button icon-right color="royal">
+        Send
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
