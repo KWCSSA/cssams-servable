@@ -64,8 +64,7 @@ export class WallPage implements OnInit{
     }
 
     seeComments(posting, i) {
-    	console.log(posting);
-    	this._nav.push(PostingPage,{postingID: posting._id});
+    	this._nav.push(PostingPage, {posting: posting});
     }
 
     toggleLike(posting, i) {

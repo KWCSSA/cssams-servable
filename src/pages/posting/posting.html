@@ -1,19 +1,22 @@
 <ion-header>
-  <ion-navbar no-border-bottom>
+  <ion-navbar no-border-bottom color="primary">
     <ion-title>Comments</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content *ngIf = "posting" class="Posting">
-<br>
-<br>
-
+<ion-content class="Posting">
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
   </ion-refresher>
 
+<div *ngIf="posting">
 <ion-card>
 	 <ion-card-header class="grey">
       {{posting.user.fname}}&nbsp;{{posting.user.lname}}
@@ -57,6 +60,8 @@
       </ion-col>
     </ion-row>
     </ion-card>
+</div>
+
 </ion-content>
 
 <ion-footer>

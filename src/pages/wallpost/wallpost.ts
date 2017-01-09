@@ -20,6 +20,7 @@ export class WallPostPage {
 
     public content: String;
     post() {
+      if (this.content.length < 15) return alert("Minimum post is 15 characters.");
     	this._wallservice.postWall(this.content).subscribe (data => {
     		if (data.success) {
     			this.events.publish('post:created');
