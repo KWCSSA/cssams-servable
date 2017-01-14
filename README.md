@@ -12,3 +12,8 @@
 
     cordova platform add ios
     sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+    ionic build ios
+
+Then use XCode to open the project in platforms/ios/KWCSSA.xcodeproj
+
+
