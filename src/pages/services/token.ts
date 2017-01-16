@@ -14,7 +14,13 @@ export class TokenService {
 		return this.storage.get('token');
 	}
 
+	setDeviceToken(dToken: string) {
+		return this.storage.set('deviceToken', dToken);
+	}
 
+	getDeviceToken() {
+		return this.storage.get('deviceToken');
+	}
 
 	setToken(token:string, id:string) {
 		this.token = token;

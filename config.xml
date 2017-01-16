@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.cssams559470" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.diantang.cssams" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>KWCSSA</name>
     <description>An awesome KWCSSA app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -36,4 +36,7 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="~3.2.1" />
+    <plugin name="phonegap-plugin-push" spec="~1.9.2">
+        <variable name="SENDER_ID" value="206726418266" />
+    </plugin>
 </widget>
