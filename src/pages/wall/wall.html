@@ -64,7 +64,8 @@
 
   <ion-card *ngFor = "let posting of postings; let i = index">
      <ion-card-header class="grey">
-         {{posting.user.fname}}&nbsp;{{posting.user.lname}}
+     <p *ngIf="posting.isAnon">{{posting.anonName | uppercase}}</p>
+     <p *ngIf="!posting.isAnon">{{posting.user.fname | uppercase}}&nbsp;{{posting.user.lname | uppercase}}</p>
       </ion-card-header>
       <ion-card-content>
         <h2>

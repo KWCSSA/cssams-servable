@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 export class WallPostService {
 	constructor (private _http:Http, private _tokenservice:TokenService) {}
 
-	postWall (content:String) {
+	postWall (content:String, isAnon:Boolean) {
 		var headers = new Headers();
 		headers.append("x-access-token",this._tokenservice.getToken());
-		return this._http.post('http://ituwcssa.com:5500/posting',{content:content},{headers:headers}).map(res => res.json());
+		return this._http.post('http://ituwcssa.com:5500/posting',{content:content, isAnon: isAnon},{headers:headers}).map(res => res.json());
 	}
 
 }
