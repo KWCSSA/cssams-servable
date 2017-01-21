@@ -22,7 +22,6 @@ export class LoginPage {
      this.user = {
        email:'',
        password: ''
-
      }
     }
 
@@ -35,19 +34,20 @@ export class LoginPage {
     	var headers = new Headers();
     	headers.append('Content-Type','application/json');
 
-     	this._http.post("http://ituwcssa.com:5500/login",JSON.stringify({email:email,password:password}),{headers:headers}).map(res => res.json())
-     	.subscribe(data => {
-     		if(data.success) {
-     			console.log(data);
-          this._tokenservice.setToken(data.token, data._id);
-     			this._nav.setRoot(TabsPage);
-     		}
-     	},
-     		err => {
-             alert("Login fail! Check your password and email!");
-             console.log(err);
-           });
-
+      this._tokenservice.getDeviceToken().then ((dToken) => {
+        this._http.post("http://ituwcssa.com:5500/login",JSON.stringify({email:email,password:password,dToken:dToken}),{headers:headers}).map(res => res.json())
+         .subscribe(data => {
+           if(data.success) {
+             console.log(data);
+             this._tokenservice.setToken(data.token, data._id);
+             this._nav.setRoot(TabsPage);
+           }
+         },
+           err => {
+               alert("Login fail! Check your password and email!");
+               console.log(err);
+             });
+          });
      }
 
      onSubmit(value:any) {

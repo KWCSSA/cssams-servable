@@ -25,6 +25,26 @@ import { WallPostPage } from '../pages/wallpost/wallpost';
 import { WallPostService } from '../pages/wallpost/wallpost.service';
 import { Storage } from '@ionic/storage';
 import {MomentModule} from 'angular2-moment';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': 'c48f51a4',
+  },
+  'push': {
+    'sender_id': '206726418266',
+    'pluginConfig': {
+      'ios': {
+        'badge': true,
+        'sound': true
+      },
+      'android': {
+        'iconColor': '#343434'
+      }
+    }
+  }
+};
+
 
 @NgModule({
   declarations: [
@@ -45,6 +65,7 @@ import {MomentModule} from 'angular2-moment';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages:true
     }),
+    CloudModule.forRoot(cloudSettings),
     HttpModule,
     FormsModule,
     MomentModule

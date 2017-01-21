@@ -17,3 +17,12 @@
 Then use XCode to open the project in platforms/ios/KWCSSA.xcodeproj
 
 
+## for push notification
+
+Note: You can test on device only if you have the developer account
+
+	sudo gem install cocoapods
+	pod setup // may take some time
+	cordova plugin add phonegap-plugin-push --variable SENDER_ID=206726418266 --save
+
+
