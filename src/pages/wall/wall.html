@@ -1,14 +1,14 @@
 <ion-header>
-<ion-navbar color="primary" no-border-bottom>
-<!--     <ion-segment [(ngModel)]="segment">
-      <ion-segment-button value="all">
+<ion-navbar  no-border-bottom>
+    <ion-segment [(ngModel)]="segment" (ngModelChange)="changeFeed($event)">
+      <ion-segment-button value="latest">
         最新
       </ion-segment-button>
-      <ion-segment-button value="favorites">
-        推荐
+      <ion-segment-button value="hot">
+        热门
       </ion-segment-button>
-    </ion-segment> -->
-    <ion-title>The Wall</ion-title>
+    </ion-segment>
+<!--     <ion-title>The Wall</ion-title> -->
 
     <ion-buttons end>
       <button ion-button icon-only (click) = "post()">
@@ -64,7 +64,8 @@
 
   <ion-card *ngFor = "let posting of postings; let i = index">
      <ion-card-header class="grey">
-         {{posting.user.fname}}&nbsp;{{posting.user.lname}}
+     <p *ngIf="posting.isAnon">{{posting.anonName | uppercase}}</p>
+     <p *ngIf="!posting.isAnon">{{posting.user.fname | uppercase}}&nbsp;{{posting.user.lname | uppercase}}</p>
       </ion-card-header>
       <ion-card-content>
         <h2>

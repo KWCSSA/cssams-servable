@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar no-border-bottom color="primary">
+  <ion-navbar no-border-bottom >
     <ion-title>Comments</ion-title>
   </ion-navbar>
 </ion-header>
@@ -19,7 +19,8 @@
 <div *ngIf="posting">
 <ion-card>
 	 <ion-card-header class="grey">
-      {{posting.user.fname}}&nbsp;{{posting.user.lname}}
+     <p *ngIf="posting.isAnon">{{posting.anonName | uppercase}}</p>
+     <p *ngIf="!posting.isAnon">{{posting.user.fname | uppercase}}&nbsp;{{posting.user.lname | uppercase}}</p>
     </ion-card-header>
     <ion-card-content>
       <h2>
@@ -36,8 +37,9 @@
           <ion-icon ios='ios-chatbubbles-outline' md='md-chatbubbles'></ion-icon>
           {{posting.replies.length}}
       </button>
-		<button ion-button clear small color="primary" icon-left>
-          <ion-icon name='heart-outline'></ion-icon>
+		<button (click) = "toggleLike(posting, i)" ion-button clear small color="primary" icon-left>
+          <ion-icon *ngIf="posting.likes.indexOf(_id) == -1" name='heart-outline'></ion-icon>
+          <ion-icon *ngIf="posting.likes.indexOf(_id) != -1" name='heart'></ion-icon>
           {{posting.likes.length}}
 		</button>
       </ion-col>
@@ -48,7 +50,8 @@
   <ion-card *ngFor="let reply of posting.replies">
     <ion-row>
       <ion-col>
-        <h2 class="pad-left grey">{{reply.user.fname}}&nbsp;{{reply.user.lname}}</h2>
+        <h2 *ngIf="reply.isAnon" class="grey pad-left">{{reply.anonName | uppercase}}</h2>
+        <h2 *ngIf="!reply.isAnon" class="grey pad-left">{{reply.user.fname | uppercase}}&nbsp;{{reply.user.lname | uppercase}}</h2>
       </ion-col>
       <ion-col text-right>
         <h2 class="pad-right time grey">{{reply.createdAt | amTimeAgo}}</h2>
@@ -65,14 +68,17 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
 
+<ion-toolbar>
     <ion-input [(ngModel)] = "comment" placeholder="Input your thoughts here..." type="text"></ion-input>
 
     <ion-buttons end>
+<!--     <div id="anon"> -->
+      <ion-icon class="shift" name="eye-off"></ion-icon>
+      <ion-checkbox class="shift" checked="true" [(ngModel)] = "isAnon"></ion-checkbox>
+<!--     </div> -->
       <button (click) = "postComment()" ion-button icon-right color="royal">
-        Send
-        <ion-icon name="send"></ion-icon>
+        <ion-icon color="primary" name="send"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>

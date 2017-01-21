@@ -19,9 +19,11 @@ export class WallPostPage {
          		) {}
 
     public content: String;
+    public isAnon: Boolean = false;
+
     post() {
       if (this.content.length < 15) return alert("Minimum post is 15 characters.");
-    	this._wallservice.postWall(this.content).subscribe (data => {
+    	this._wallservice.postWall(this.content, this.isAnon).subscribe (data => {
     		if (data.success) {
     			this.events.publish('post:created');
     			this._nav.pop();
