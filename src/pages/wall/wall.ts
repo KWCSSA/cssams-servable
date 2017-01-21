@@ -37,13 +37,16 @@ export class WallPage implements OnInit {
   public offset: number = 0;
   public limit: number = 10;
   public _id: string;
+  public segment:string;
   // public postings: any;
 
   constructor(private _nav: NavController,
     private _tokenservice: TokenService,
     private _wallservice: WallService,
     public events: Events
-  ) {}
+  ) {
+    this.segment = "latest";
+  }
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
@@ -61,6 +64,10 @@ export class WallPage implements OnInit {
       this.postings = this.postings.concat(data);
       infiniteScroll.complete();
     });
+  }
+
+  changeFeed(event) {
+    console.log (event);
   }
 
 

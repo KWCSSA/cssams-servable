@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar no-border-bottom color="primary">
+  <ion-navbar no-border-bottom >
     <ion-title>Comments</ion-title>
   </ion-navbar>
 </ion-header>
@@ -74,12 +74,11 @@
 
     <ion-buttons end>
 <!--     <div id="anon"> -->
-      <ion-icon name="eye-off"></ion-icon>
-      <ion-checkbox checked="true" [(ngModel)] = "isAnon"></ion-checkbox>
+      <ion-icon class="shift" name="eye-off"></ion-icon>
+      <ion-checkbox class="shift" checked="true" [(ngModel)] = "isAnon"></ion-checkbox>
 <!--     </div> -->
       <button (click) = "postComment()" ion-button icon-right color="royal">
-        Send
-        <ion-icon name="send"></ion-icon>
+        <ion-icon color="primary" name="send"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>

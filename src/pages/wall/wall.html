@@ -1,14 +1,14 @@
 <ion-header>
-<ion-navbar color="primary" no-border-bottom>
-<!--     <ion-segment [(ngModel)]="segment">
-      <ion-segment-button value="all">
+<ion-navbar  no-border-bottom>
+    <ion-segment [(ngModel)]="segment" (ngModelChange)="changeFeed($event)">
+      <ion-segment-button value="latest">
         最新
       </ion-segment-button>
-      <ion-segment-button value="favorites">
-        推荐
+      <ion-segment-button value="hot">
+        热门
       </ion-segment-button>
-    </ion-segment> -->
-    <ion-title>The Wall</ion-title>
+    </ion-segment>
+<!--     <ion-title>The Wall</ion-title> -->
 
     <ion-buttons end>
       <button ion-button icon-only (click) = "post()">

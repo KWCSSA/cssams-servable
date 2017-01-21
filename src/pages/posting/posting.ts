@@ -43,7 +43,7 @@ export class PostingPage {
   }
 
   postComment() {
-    if (this.comment.length < 3) return alert("Minimum post is 3 characters.");
+    if (!this.comment || this.comment.length < 3) return alert("Minimum post is 3 characters.");
     this._postingservice.postComment(this.posting._id, this.comment, this.isAnon).subscribe(data => {
         if (data.success) {
           this._postingservice.getPosting(this.posting._id).subscribe(data => {
