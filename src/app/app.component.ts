@@ -3,8 +3,11 @@ import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar  } from 'ionic-native';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
-import {TokenService} from '../pages/services/token';
-import {Storage} from '@ionic/storage';
+import { TokenService} from '../pages/services/token';
+import { Storage} from '@ionic/storage';
+import {ViewChild} from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { PostingPage } from '../pages/posting/posting';
 import {
   Push,
   PushToken
@@ -13,12 +16,14 @@ import {
 
 
 @Component({
-  template: `<ion-nav [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #myNav [root]="rootPage"></ion-nav>`
 })
 
 export class MyApp {
   public rootPage: any;
   public logon: boolean;
+
+  @ViewChild('myNav') nav: NavController
 
   constructor(private platform: Platform, private _tokenservice: TokenService, public storage: Storage
     , private alertCtrl: AlertController, public push: Push) {
@@ -35,7 +40,14 @@ export class MyApp {
 
       this.push.rx.notification()
         .subscribe((msg) => {
-          alert(msg.title + ': ' + msg.text);
+          var data = msg.raw.additionalData as any;
+          if (data.foreground) {
+            alert("You get a new comment in your post!");
+            this.nav.push(PostingPage, {postingId:data.postingId});
+          } else {
+            this.nav.push(PostingPage, {postingId:data.postingId});
+          }
+          
       });
 
 

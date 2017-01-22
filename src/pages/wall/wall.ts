@@ -51,7 +51,7 @@ export class WallPage implements OnInit {
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
     this.offset = 0;
-    this._wallservice.getFeed(this.offset, this.limit).subscribe(data => {
+    this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = data;
       refresher.complete();
     });
@@ -60,7 +60,7 @@ export class WallPage implements OnInit {
   doInfinite(infiniteScroll) {
     console.log('scrooooolll INFINITEEE');
     this.offset += 10;
-    this._wallservice.getFeed(this.offset, this.limit).subscribe(data => {
+    this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = this.postings.concat(data);
       infiniteScroll.complete();
     });
@@ -68,6 +68,10 @@ export class WallPage implements OnInit {
 
   changeFeed(event) {
     console.log (event);
+    this.offset = 0;
+    this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
+      this.postings = data;
+    });
   }
 
 
@@ -75,12 +79,12 @@ export class WallPage implements OnInit {
 
   ngOnInit() {
     this._id = this._tokenservice.getId();
-    this._wallservice.getFeed(this.offset, this.limit).subscribe(data => {
+    this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = data;
     });
     this.events.subscribe('post:created', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
-      this._wallservice.getFeed(this.offset, this.limit).subscribe(data => {
+      this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
         this.postings = data;
       });
     });
@@ -89,7 +93,7 @@ export class WallPage implements OnInit {
 
   seeComments(posting, i) {
     this._nav.push(PostingPage, {
-      posting: posting
+      postingId: posting._id
     });
   }
 

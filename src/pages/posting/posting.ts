@@ -25,13 +25,11 @@ export class PostingPage {
 
   ionViewWillEnter() {
     this._id = this._tokenservice.getId();
-    this.posting = this._navParams.get('posting');
-    //  console.log(postingID);
-    // this._postingservice.getPosting(postingID).subscribe(data => {
-    //    console.log (data);
-    //   this.posting = data;
-    // },
-    // err => alert(err));
+    var postingId = this._navParams.get('postingId');
+    this._postingservice.getPosting(postingId).subscribe(data => {
+      this.posting = data;
+    },
+    err => alert(err));
   }
 
   doRefresh(refresher) {

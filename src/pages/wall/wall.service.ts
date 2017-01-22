@@ -9,15 +9,16 @@ import { Observable } from 'rxjs';
 export class WallService {
 	constructor (private _http:Http, private _tokenservice:TokenService) {}
 
-	getFeed(offset, limit) {
+	getFeed(offset, limit, type) {
 		var token = this._tokenservice.getToken();
 		var headers = new Headers();
 		headers.append("x-access-token",this._tokenservice.getToken());
 		var params = new URLSearchParams();
 		params.set('offset', offset);
 		params.set('limit', limit);
+		var url = 'http://ituwcssa.com:5500/feed/'+type;
 
-		return this._http.get('http://ituwcssa.com:5500/feed', {headers:headers, search: params}).map(res => res.json());
+		return this._http.get(url, {headers:headers, search: params}).map(res => res.json());
 	}
 
 	like(postingID) {
