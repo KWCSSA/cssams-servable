@@ -1,7 +1,12 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <ion-title>我的会员卡</ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding class="Card">
@@ -12,16 +17,15 @@
   </ion-col>
 </ion-row>
 
+
+
 <ion-row padding>
   <img *ngIf = "localImageURL" class="centered" [src]="localImageURL" (error)="updateUrl()" alt="LocalCard">
 </ion-row>
 
 
-
 <ion-row padding>
-<p id="law">此会员卡最终解释权归KWCSSA所有<br>遇到问题请联系info@uwcssa.com</p>
+<p id="law" text-center>此会员卡最终解释权归KWCSSA所有<br>it@uwcssa.com<br>KWCSSA 会员卡 V2.0<br>© 2017 KWCSSA 信息部</p>
 </ion-row>
-
-
 
 </ion-content>

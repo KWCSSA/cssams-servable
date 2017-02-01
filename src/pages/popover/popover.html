@@ -1,0 +1,7 @@
+<ion-list>
+  <ion-list-header>{{email}}{{isVerified?'':'（未验证)'}}</ion-list-header>
+  <button ion-item *ngIf="!isVerified" (click)="sendVerification()">发送验证邮件</button>
+  <button ion-item (click)="resetPassword()">改密码</button>
+  <button ion-item (click)="logout()">登出</button>
+  <p ion-item style="color:red" *ngIf = "timer.running"> 冷却时间：{{timer.time}} </p>
+</ion-list>

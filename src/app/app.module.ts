@@ -21,8 +21,11 @@ import { WallPage } from '../pages/wall/wall';
 import { WallService } from '../pages/wall/wall.service';
 import { PostingPage } from '../pages/posting/posting';
 import { PostingService } from '../pages/posting/posting.service';
-import { MypostsPage } from '../myposts/myposts';
+import { MypostsPage } from '../pages/myposts/myposts';
 import { WallPostPage } from '../pages/wallpost/wallpost';
+import { MypostsService } from '../pages/myposts/myposts.service';
+import { PopoverPage } from '../pages/popover/popover';
+import { PopoverService } from '../pages/popover/popover.service';
 import { WallPostService } from '../pages/wallpost/wallpost.service';
 import { Storage } from '@ionic/storage';
 import {MomentModule} from 'angular2-moment';
@@ -60,8 +63,9 @@ const cloudSettings: CloudSettings = {
     CardPage,
     WallPage,
     WallPostPage,
+    MypostsPage,
     PostingPage,
-    MypostsPage
+    PopoverPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -85,8 +89,9 @@ const cloudSettings: CloudSettings = {
     ForgetPage,
     WallPage,
     WallPostPage,
-    PostingPage,
-    MypostsPage
+    MypostsPage,
+    PopoverPage,
+    PostingPage
   ],
   providers: [
     ProfileService,
@@ -98,6 +103,8 @@ const cloudSettings: CloudSettings = {
     WallService,
     WallPostService,
     PostingService,
+    PopoverService,
+    MypostsService,
     Storage
   ]
 })

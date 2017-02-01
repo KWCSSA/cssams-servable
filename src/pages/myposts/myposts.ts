@@ -15,6 +15,7 @@ export class MypostsPage {
 
   public postings: any;
   public _id: string;
+  public loading: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   			  private _mypostsservice: MypostsService,
@@ -23,7 +24,9 @@ export class MypostsPage {
   ionViewDidLoad() {
     this._id = this._tokenservice.getId();
     this._mypostsservice.getOwnPosting().subscribe(data => {
+      console.log(data);
       this.postings = data;
+      this.loading = false;
     },
     err => alert(err));
   }
@@ -33,6 +36,14 @@ export class MypostsPage {
     this._mypostsservice.getOwnPosting().subscribe(data => {
       this.postings = data;
       refresher.complete();
+    });
+  }
+
+  seeComments(posting, i) {
+    console.log('aaaaaaaa');
+    console.log(posting);
+    this.navCtrl.push(PostingPage, {
+      postingId: posting._id
     });
   }
 

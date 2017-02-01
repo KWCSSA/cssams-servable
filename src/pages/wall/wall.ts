@@ -1,34 +1,11 @@
-
-import {
-  NavController,
-  ToastController
-} from 'ionic-angular';
-import {
-  Http,
-  Headers
-} from '@angular/http'
-import {
-  Component,
-  OnInit
-} from '@angular/core'
-import {
-  WallService
-} from './wall.service';
-import {
-  WallPostPage
-} from '../wallpost/wallpost';
-import {
-  TokenService
-} from '../services/token';
-import {
-  PostingPage
-} from '../posting/posting';
-import { 
-  MyPostingsPage 
-} from '../mypostings/mypostings';
-import {
-  Events
-} from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { WallService } from './wall.service';
+import { WallPostPage } from '../wallpost/wallpost';
+import { TokenService } from '../services/token';
+import { PostingPage } from '../posting/posting';
+import { MypostsPage } from '../myposts/myposts';
+import { Events } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -138,8 +115,7 @@ export class WallPage implements OnInit {
   }
 
   seeMyposts() {
-    console.log('aaaa');
-    this._nav.push(MyPostingsPage);
+    this._nav.push(MypostsPage, {});
   }
 
 
