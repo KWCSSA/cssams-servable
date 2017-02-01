@@ -21,6 +21,7 @@ import { WallPage } from '../pages/wall/wall';
 import { WallService } from '../pages/wall/wall.service';
 import { PostingPage } from '../pages/posting/posting';
 import { PostingService } from '../pages/posting/posting.service';
+import { MypostsPage } from '../myposts/myposts';
 import { WallPostPage } from '../pages/wallpost/wallpost';
 import { WallPostService } from '../pages/wallpost/wallpost.service';
 import { Storage } from '@ionic/storage';
@@ -59,7 +60,8 @@ const cloudSettings: CloudSettings = {
     CardPage,
     WallPage,
     WallPostPage,
-    PostingPage
+    PostingPage,
+    MypostsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -83,7 +85,8 @@ const cloudSettings: CloudSettings = {
     ForgetPage,
     WallPage,
     WallPostPage,
-    PostingPage
+    PostingPage,
+    MypostsPage
   ],
   providers: [
     ProfileService,

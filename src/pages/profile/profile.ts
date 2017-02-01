@@ -16,6 +16,8 @@ export class ProfilePage implements OnInit{
   fname:string;
   lname:string;
   email:string;
+  isEmailVerified:boolean;
+  isSentVerification:boolean = false;
   username:string;
 
   public timer: any = {
@@ -53,19 +55,31 @@ export class ProfilePage implements OnInit{
       this.fname = data.fname;
       this.lname = data.lname;
       this.email = data.email;
+      this.isEmailVerified = data.isEmailVerified;
     },
     err => {
       alert(JSON.stringify(err));
     }
-    )
+    );
   }
 
   resetPassword() {
-    this._profileservice.submitEmail(this.email)
+    this._profileservice.forgetEmail(this.email)
     .subscribe(data => {
       if (data.success) {
         this.runTimer();
         alert("发送成功！请查收邮件修改密码！");
+      }
+    })
+  }
+
+  sendVerification() {
+    this._profileservice.verifyEmail(this.email)
+    .subscribe(data => {
+      if (data.success) {
+        this.isSentVerification = true;
+        this.runTimer();
+        alert("发送成功！请查收邮件验证邮箱！");
       }
     })
   }

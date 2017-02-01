@@ -27,7 +27,9 @@ export class WallPostPage {
     		if (data.success) {
     			this.events.publish('post:created');
     			this._nav.pop();
-    		}
+    		} else {
+          alert(data.msg);
+        }
     	}, err => {
     		alert(err);
     	});

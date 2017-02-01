@@ -1,6 +1,7 @@
 
 import {
-  NavController
+  NavController,
+  ToastController
 } from 'ionic-angular';
 import {
   Http,
@@ -22,6 +23,9 @@ import {
 import {
   PostingPage
 } from '../posting/posting';
+import { 
+  MyPostingsPage 
+} from '../mypostings/mypostings';
 import {
   Events
 } from 'ionic-angular';
@@ -38,12 +42,14 @@ export class WallPage implements OnInit {
   public limit: number = 10;
   public _id: string;
   public segment:string;
+  public loading: boolean = true;
   // public postings: any;
 
   constructor(private _nav: NavController,
     private _tokenservice: TokenService,
     private _wallservice: WallService,
-    public events: Events
+    public events: Events,
+    private toastCtrl: ToastController
   ) {
     this.segment = "latest";
   }
@@ -61,6 +67,15 @@ export class WallPage implements OnInit {
     console.log('scrooooolll INFINITEEE');
     this.offset += 10;
     this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
+      if (data.length == 0) {
+       let toast = this.toastCtrl.create({
+          message: '没啦:(',
+          duration: 1000,
+          position: 'bottom'
+        });
+       toast.present();
+      }
+
       this.postings = this.postings.concat(data);
       infiniteScroll.complete();
     });
@@ -68,9 +83,12 @@ export class WallPage implements OnInit {
 
   changeFeed(event) {
     console.log (event);
+    this.postings = null;
+    this.loading = true;
     this.offset = 0;
     this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = data;
+      this.loading = false;
     });
   }
 
@@ -81,11 +99,13 @@ export class WallPage implements OnInit {
     this._id = this._tokenservice.getId();
     this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = data;
+      this.loading = false;
     });
     this.events.subscribe('post:created', () => {
-      // user and time are the same arguments passed in `events.publish(user, time)`
+      this.loading = true;
       this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
         this.postings = data;
+        this.loading = false;
       });
     });
 
@@ -115,6 +135,11 @@ export class WallPage implements OnInit {
         },
         err => alert(err));
     }
+  }
+
+  seeMyposts() {
+    console.log('aaaa');
+    this._nav.push(MyPostingsPage);
   }
 
 

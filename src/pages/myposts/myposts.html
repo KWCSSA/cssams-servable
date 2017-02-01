@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>myposts</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-spinner text-center *ngIf = "loading"></ion-spinner>
+
+
+  <ion-card *ngFor = "let posting of postings; let i = index">
+     <ion-card-header class="grey">
+     <p *ngIf="posting.isAnon">{{posting.anonName | uppercase}}</p>
+     <p *ngIf="!posting.isAnon">{{posting.user.fname | uppercase}}&nbsp;{{posting.user.lname | uppercase}}</p>
+      </ion-card-header>
+      <ion-card-content>
+        <h2>
+          {{posting.content}}
+        </h2>
+      </ion-card-content>
+
+      <ion-row no-padding>
+        <ion-col>
+          <p class="time grey">{{posting.createdAt | amTimeAgo}}</p>
+        </ion-col>
+        <ion-col text-right>
+        <button (click) = "seeComments(posting, i)" ion-button clear small color="primary" icon-left>
+            <ion-icon ios='ios-chatbubbles-outline' md='md-chatbubbles'></ion-icon>
+            {{posting.replies.length}}
+        </button>
+      <button (click) = "toggleLike(posting, i)" ion-button clear small color="primary" icon-left>
+            <ion-icon *ngIf="posting.likes.indexOf(_id) == -1" name='heart-outline'></ion-icon>
+            <ion-icon *ngIf="posting.likes.indexOf(_id) != -1" name='heart'></ion-icon>
+            {{posting.likes.length}}
+      </button>
+        </ion-col>
+      </ion-row>
+
+  </ion-card>
+
+
+</ion-content>

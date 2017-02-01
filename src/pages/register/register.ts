@@ -29,27 +29,29 @@ export class RegisterPage {
     	var headers = new Headers();
     	headers.append('Content-Type','application/json');
 
-     	this._http.post("http://ituwcssa.com:5500/register",JSON.stringify({fname:fname,lname:lname,email:email,password:password}),{headers:headers}).map(res => res.json())
+     	this._http.post("http://ituwcssa.com:5500/register", JSON.stringify({fname:fname,lname:lname,email:email,password:password}),{headers:headers}).map(res => res.json())
      	.subscribe(data => {
-             if (data.success) {
-                 console.log(data);
-                 this._nav.pop();
-             }
-             else {
-                 console.log(data.Message);
-                 if (data.Message.message) {
-                   alert(data.Message.message);
-                 }
-                 else {
-                     alert(data.Message.errmsg);
-                 }
-             }
-         },
+        if (data.success) {
+           alert('注册成功，谢谢。验证邮件已发送到邮箱。');
+           this._http.post("http://ituwcssa.com:5500/verifyemail", JSON.stringify({email:email}),{headers:headers}).map(res => res.json())
+           .map(res => res.json());
+           this._nav.pop();
+         }
+       else {
+           console.log(data.Message);
+           if (data.Message.message) {
+             alert(data.Message.message);
+           }
+           else {
+             alert(data.Message.errmsg);
+           }
+       }
+       },
      			err => console.log(err));
 
     }
 
         onSubmit(value:any): void { 
-            this.register(value.fname,value.lname,value.password,value.email);
+          this.register(value.fname,value.lname,value.password,value.email);
         }
     }

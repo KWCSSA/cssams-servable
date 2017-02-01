@@ -40,6 +40,12 @@ export class PostingPage {
     });
   }
 
+  // seeComments(posting, i) {
+  //   this._nav.push(PostingPage, {
+  //     postingId: posting._id
+  //   });
+  // }
+
   postComment() {
     if (!this.comment || this.comment.length < 3) return alert("Minimum post is 3 characters.");
     this._postingservice.postComment(this.posting._id, this.comment, this.isAnon).subscribe(data => {
@@ -49,6 +55,8 @@ export class PostingPage {
               this.posting = data;
               },
             err => alert(err));
+        } else {
+          alert(data.msg);
         }
       },
       err => alert(err));

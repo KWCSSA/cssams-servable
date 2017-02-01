@@ -1,5 +1,11 @@
 <ion-header>
-<ion-navbar  no-border-bottom>
+<ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-only color="primary" (click) = "seeMyposts()">
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
+
     <ion-segment [(ngModel)]="segment" (ngModelChange)="changeFeed($event)">
       <ion-segment-button value="latest">
         最新
@@ -15,7 +21,7 @@
         <ion-icon name="add-circle"></ion-icon>
       </button>
     </ion-buttons>
-</ion-navbar>
+      </ion-toolbar>
 </ion-header>
 
 <ion-content class="Wall">
@@ -60,6 +66,8 @@
 </ion-card>
 </ion-item>
 </ion-list> -->
+
+<ion-spinner text-center *ngIf = "loading"></ion-spinner>
 
 
   <ion-card *ngFor = "let posting of postings; let i = index">

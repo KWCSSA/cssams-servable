@@ -26,8 +26,12 @@ export class ProfileService {
 	}
 
 
-	submitEmail(email:String) {
+	forgetEmail(email:String) {
 		return this._http.post('http://ituwcssa.com:5500/forgot',{email:email}).map(res => res.json());
+	}
+
+	verifyEmail(email:String) {
+		return this._http.post('http://ituwcssa.com:5500/verifyemail',{email:email}).map(res => res.json());
 	}
 	
 
