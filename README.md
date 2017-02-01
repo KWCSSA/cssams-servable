@@ -25,4 +25,7 @@ Note: You can test on device only if you have the developer account
 	pod setup // may take some time
 	cordova plugin add phonegap-plugin-push --variable SENDER_ID=206726418266 --save
 
+May need to do the following step:
+http://stackoverflow.com/questions/31205133/how-to-enable-bitcode-in-xcode-7/32466484#32466484
+
 
