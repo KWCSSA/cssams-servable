@@ -51,9 +51,9 @@ export class PostingPage {
     this._postingservice.postComment(this.posting._id, this.comment, this.isAnon).subscribe(data => {
         if (data.success) {
           this._postingservice.getPosting(this.posting._id).subscribe(data => {
-              console.log(data);
+              this.comment = "";
               this.posting = data;
-              },
+            },
             err => alert(err));
         } else {
           alert(data.msg);

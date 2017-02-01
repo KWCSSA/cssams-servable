@@ -42,10 +42,14 @@ export class MyApp {
         .subscribe((msg) => {
           var data = msg.raw.additionalData as any;
           if (data.foreground) {
-            alert("You get a new comment in your post!");
-            this.nav.push(PostingPage, {postingId:data.postingId});
+            if (data.postingId) {
+              alert("You get a new comment in your post!");
+              this.nav.push(PostingPage, {postingId:data.postingId});
+            }
           } else {
-            this.nav.push(PostingPage, {postingId:data.postingId});
+            if (data.postingId) {
+              this.nav.push(PostingPage, {postingId:data.postingId});
+            }
           }
           
       });
