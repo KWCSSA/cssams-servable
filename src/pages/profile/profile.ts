@@ -33,6 +33,8 @@ export class ProfilePage implements OnInit{
     this.getProfile();
   }
 
+
+
   runTimer () {
     this.timer.running = true;
     this.interval = setInterval (() => {

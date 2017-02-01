@@ -1,0 +1,6 @@
+<ion-list>
+  <ion-list-header>{{email}}</ion-list-header>
+  <button ion-item (click)="resetPassword()">Change Password</button>
+  <button ion-item (click)="logout()">Log Out</button>
+  <p ion-item style="color:red" *ngIf = "timer.running"> 冷却时间：{{timer.time}} </p>
+</ion-list>

@@ -1,5 +1,4 @@
 import {NavController} from 'ionic-angular';
-import {Http,Headers} from '@angular/http'
 import {Component} from '@angular/core'
 import {WallPostService} from './wallpost.service';
 import {TokenService} from '../services/token';

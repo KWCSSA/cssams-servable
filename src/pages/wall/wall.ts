@@ -1,30 +1,11 @@
 
-import {
-  NavController
-} from 'ionic-angular';
-import {
-  Http,
-  Headers
-} from '@angular/http'
-import {
-  Component,
-  OnInit
-} from '@angular/core'
-import {
-  WallService
-} from './wall.service';
-import {
-  WallPostPage
-} from '../wallpost/wallpost';
-import {
-  TokenService
-} from '../services/token';
-import {
-  PostingPage
-} from '../posting/posting';
-import {
-  Events
-} from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { WallService } from './wall.service';
+import { WallPostPage } from '../wallpost/wallpost';
+import { TokenService } from '../services/token';
+import { PostingPage } from '../posting/posting';
+import { Events } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 @Component({

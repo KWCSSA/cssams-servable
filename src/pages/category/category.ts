@@ -1,6 +1,6 @@
 import {Alert, NavController} from 'ionic-angular';
 import {CatlistPage} from '../catlist/catlist'
-import {CategoryService,category,ShopCard} from './category.service'
+import {CategoryService} from './category.service'
 import {Component} from '@angular/core'
 
 @Component({
@@ -9,7 +9,7 @@ import {Component} from '@angular/core'
 })
 
 export class CategoryPage {
-	bosses: category[];
+	bosses: any[];
   ready: boolean = false;
   constructor(private _nav: NavController, private _catservice:CategoryService) {
     _catservice.getShops().subscribe (data => {
