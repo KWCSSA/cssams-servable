@@ -1,8 +1,7 @@
-import {Platform, NavController, App, PopoverController} from 'ionic-angular';
+import {Platform, App, PopoverController} from 'ionic-angular';
 import {ApplicationRef,Component} from '@angular/core'
 import { Storage } from '@ionic/storage';
 import {CardService} from './card.service';
-import {File} from 'ionic-native';
 import {PopoverPage} from '../popover/popover';
 import {TokenService} from '../services/token';
 import {LoginPage} from '../login/login';

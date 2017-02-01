@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';  
 import {Http, Headers} from '@angular/http'
 import {TokenService} from '../services/token'
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class CardService {
@@ -11,7 +10,7 @@ export class CardService {
   getProfile() {
     var token = this._tokenservice.getToken();
     var headers = new Headers();
-    headers.append("x-access-token",this._tokenservice.getToken());
+    headers.append("x-access-token", token);
     return this._http.get('http://ituwcssa.com:5500/profile',{headers:headers}).map(res => res.json());
   }
 
@@ -19,7 +18,7 @@ export class CardService {
   getCardImage () {
     var token = this._tokenservice.getToken();
     var headers = new Headers();
-    headers.append("x-access-token",this._tokenservice.getToken());
+    headers.append("x-access-token", token);
     return this._http.get("http://ituwcssa.com:5500/cardimage",{headers:headers}).map(res =>res.json());
   }
 

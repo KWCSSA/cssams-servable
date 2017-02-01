@@ -1,4 +1,4 @@
-import {Alert, NavController} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 import {CatlistPage} from '../catlist/catlist'
 import {CategoryService} from './category.service'
 import {Component} from '@angular/core'

@@ -1,12 +1,12 @@
 <ion-header>
-<ion-toolbar>
+<ion-toolbar color="primary">
     <ion-buttons start>
-      <button ion-button icon-only color="primary" (click) = "seeMyposts()">
+      <button ion-button icon-only color="light" (click) = "seeMyposts()">
         <ion-icon name="person"></ion-icon>
       </button>
     </ion-buttons>
 
-    <ion-segment [(ngModel)]="segment" (ngModelChange)="changeFeed($event)">
+    <ion-segment color="light" [(ngModel)]="segment" (ngModelChange)="changeFeed($event)">
       <ion-segment-button value="latest">
         最新
       </ion-segment-button>
@@ -17,7 +17,7 @@
 <!--     <ion-title>The Wall</ion-title> -->
 
     <ion-buttons end>
-      <button ion-button icon-only color="primary" (click) = "post()">
+      <button ion-button icon-only color="light" (click) = "post()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
     </ion-buttons>

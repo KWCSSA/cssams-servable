@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';  
-import {Http, Headers} from '@angular/http'
+import {Http} from '@angular/http'
 import {TokenService} from '../services/token'
-import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class PopoverService {

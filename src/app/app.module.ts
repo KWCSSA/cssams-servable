@@ -13,8 +13,6 @@ import { ForgetService} from '../pages/forget/forget.service';
 import { CardPage } from '../pages/card/card';
 import { CardService } from '../pages/card/card.service';
 import { ForgetPage } from '../pages/forget/forget';
-import { ProfilePage } from '../pages/profile/profile';
-import { ProfileService } from '../pages/profile/profile.service';
 import { TokenService } from '../pages/services/token';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WallPage } from '../pages/wall/wall';
@@ -59,7 +57,6 @@ const cloudSettings: CloudSettings = {
     TabsPage,
     RegisterPage,
     ForgetPage,
-    ProfilePage,
     CardPage,
     WallPage,
     WallPostPage,
@@ -84,7 +81,6 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     TabsPage,
     RegisterPage,
-    ProfilePage,
     CardPage,
     ForgetPage,
     WallPage,
@@ -94,7 +90,6 @@ const cloudSettings: CloudSettings = {
     PostingPage
   ],
   providers: [
-    ProfileService,
     CardService,
     TokenService,
     CategoryService,

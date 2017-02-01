@@ -1,5 +1,5 @@
 import {NavController, NavParams,Platform} from 'ionic-angular';
-import {OnInit,ApplicationRef,Component} from '@angular/core'
+import {ApplicationRef,Component} from '@angular/core'
 import {CatlistService,ShopCard} from './catlist.service'
 import {Storage} from '@ionic/storage';
 declare var cordova: any;

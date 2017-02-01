@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'; 
 import {Http, Headers,URLSearchParams} from '@angular/http';
 import {TokenService} from '../services/token'
-import { Observable } from 'rxjs';
+
 
 
 
@@ -12,7 +12,7 @@ export class WallService {
 	getFeed(offset, limit, type) {
 		var token = this._tokenservice.getToken();
 		var headers = new Headers();
-		headers.append("x-access-token",this._tokenservice.getToken());
+		headers.append("x-access-token", token);
 		var params = new URLSearchParams();
 		params.set('offset', offset);
 		params.set('limit', limit);
