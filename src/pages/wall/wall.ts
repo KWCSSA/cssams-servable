@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'page-wall',
-  templateUrl: 'wall.html'
+  templateUrl: 'wall.html',
 })
 
 export class WallPage implements OnInit {

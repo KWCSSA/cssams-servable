@@ -26,6 +26,7 @@ import { PopoverPage } from '../pages/popover/popover';
 import { PopoverService } from '../pages/popover/popover.service';
 import { WallPostService } from '../pages/wallpost/wallpost.service';
 import { Storage } from '@ionic/storage';
+import { BrPipe } from '../pages/services/br.pipe';
 import {MomentModule} from 'angular2-moment';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
@@ -62,7 +63,8 @@ const cloudSettings: CloudSettings = {
     WallPostPage,
     MypostsPage,
     PostingPage,
-    PopoverPage
+    PopoverPage,
+    BrPipe,
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
