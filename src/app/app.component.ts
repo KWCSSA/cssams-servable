@@ -51,7 +51,6 @@ export class MyApp {
               this.nav.push(PostingPage, {postingId:data.postingId});
             }
           }
-          
       });
 
 

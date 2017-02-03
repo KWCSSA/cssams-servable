@@ -13,4 +13,27 @@ page-wall {
 		margin-top: -1.5em;
 		margin-bottom: -0.5em;
 	}
+
+	#spinner {
+	  margin: auto;
+	  position: absolute;
+	  top: 0; left: 0; bottom: 0; right: 0;
+	  height: 85px;
+	  text-align: center;
+
+	  width: 19% !important;
+	  height: 85px !important;
+	}
+
+	ion-card {
+		postion:relative;
+	}
+
+	.cornerimage {
+	width:50px;
+	height: auto;
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	}
 }

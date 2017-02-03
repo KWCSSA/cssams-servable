@@ -16,6 +16,8 @@
     </ion-refresher-content>
   </ion-refresher>
 
+    <ion-spinner color="primary" id="spinner" text-center *ngIf = "loading"></ion-spinner>
+
 <div *ngIf="posting">
 <ion-card>
 	 <ion-card-header class="grey">
