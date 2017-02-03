@@ -12,7 +12,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="*" />
-    <access origin="maps:*" launch-external="yes" />
+    <access launch-external="yes" origin="maps:*" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
