@@ -1,4 +1,4 @@
-import { NavController, App, NavParams } from 'ionic-angular';
+import { NavController, App, NavParams, ToastController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { TokenService } from '../services/token';
 import { PostingService } from './posting.service';
@@ -20,7 +20,8 @@ export class PostingPage {
     private _tokenservice: TokenService,
     private _navParams: NavParams,
     private _postingservice: PostingService,
-    private _app: App) {
+    private _app: App,
+    private toastCtrl: ToastController) {
 
   }
 
@@ -42,19 +43,21 @@ export class PostingPage {
     });
   }
 
-  // seeComments(posting, i) {
-  //   this._nav.push(PostingPage, {
-  //     postingId: posting._id
-  //   });
-  // }
 
   postComment() {
     if (!this.comment || this.comment.length < 3) return alert("Minimum post is 3 characters.");
-    this._postingservice.postComment(this.posting._id, this.comment, this.isAnon).subscribe(data => {
+    var comment = this.comment;
+    this.comment = "";
+    this._postingservice.postComment(this.posting._id, comment, this.isAnon).subscribe(data => {
         if (data.success) {
           this._postingservice.getPosting(this.posting._id).subscribe(data => {
-              this.comment = "";
+              let toast = this.toastCtrl.create({
+                message: '贴墙成功！',
+                duration: 1000,
+                position: 'middle'
+              });
               this.posting = data;
+              toast.present();
             },
             err => alert(err));
         } else {

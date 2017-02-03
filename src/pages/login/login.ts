@@ -42,6 +42,9 @@ export class LoginPage {
              this._tokenservice.setToken(data.token, data._id);
              this._nav.setRoot(TabsPage);
            }
+           else {
+             alert(data.msg);
+           }
          },
            err => {
                alert("Login fail! Check your password and email!");

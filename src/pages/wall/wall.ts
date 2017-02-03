@@ -20,6 +20,7 @@ export class WallPage implements OnInit {
   public _id: string;
   public segment:string;
   public loading: boolean = true;
+  public atBottom: boolean = false;
   // public postings: any;
 
   constructor(private _nav: NavController,
@@ -37,26 +38,32 @@ export class WallPage implements OnInit {
     this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = data;
       refresher.complete();
+      this.atBottom = false;
     });
   }
 
   doInfinite(infiniteScroll) {
-    console.log('scrooooolll INFINITEEE');
-    this.offset += 10;
-    this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
-      if (data.length == 0) {
-       let toast = this.toastCtrl.create({
-          message: '没啦:(',
-          duration: 1000,
-          position: 'bottom'
-        });
-       toast.present();
-      }
+    if (!this.atBottom) {
+      console.log('scrooooolll INFINITEEE');
+      this.offset += 10;
+      this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
+        if (data.length == 0) {
+         let toast = this.toastCtrl.create({
+            message: '没啦:(',
+            duration: 1000,
+            position: 'bottom'
+          });
+         toast.present();
+         this.atBottom = true;
+        }
 
-      this.postings = this.postings.concat(data);
-      infiniteScroll.complete();
-    });
-  }
+        this.postings = this.postings.concat(data);
+        infiniteScroll.complete();
+      });
+    }
+    else infiniteScroll.complete();
+    }
+    
 
   changeFeed(event) {
     console.log (event);
@@ -66,6 +73,7 @@ export class WallPage implements OnInit {
     this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = data;
       this.loading = false;
+      this.atBottom = false;
     });
   }
 
@@ -77,12 +85,14 @@ export class WallPage implements OnInit {
     this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
       this.postings = data;
       this.loading = false;
+      this.atBottom = false;
     });
     this.events.subscribe('post:created', () => {
       this.loading = true;
       this._wallservice.getFeed(this.offset, this.limit, this.segment).subscribe(data => {
         this.postings = data;
         this.loading = false;
+        this.atBottom = false;
       });
     });
 
