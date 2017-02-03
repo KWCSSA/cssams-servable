@@ -19,7 +19,7 @@
   </ion-refresher>
 
 
-  <ion-spinner text-center *ngIf = "loading"></ion-spinner>
+  <ion-spinner color="primary" id="spinner" text-center *ngIf = "loading"></ion-spinner>
 
 
   <ion-card *ngFor = "let posting of postings; let i = index">

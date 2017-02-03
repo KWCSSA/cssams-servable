@@ -67,10 +67,13 @@
 </ion-item>
 </ion-list> -->
 
-<ion-spinner text-center *ngIf = "loading"></ion-spinner>
+<ion-spinner color="primary" id="spinner" text-center *ngIf = "loading"></ion-spinner>
 
 
-  <ion-card *ngFor = "let posting of postings; let i = index">
+  <ion-card style="position:relative" *ngFor = "let posting of postings; let i = index">
+      <img class="cornerimage" *ngIf="segment=='top' && i == 0" src="assets/icon/gold_medal.png"/>
+      <img class="cornerimage" *ngIf="segment=='top' && i == 1" src="assets/icon/silver_medal.png"/>
+      <img class="cornerimage" *ngIf="segment=='top' && i == 2" src="assets/icon/bronze_medal.png"/>
      <ion-card-header class="grey">
      <p *ngIf="posting.isAnon">{{posting.anonName | uppercase}}</p>
      <p *ngIf="!posting.isAnon">{{posting.user.fname | uppercase}}&nbsp;{{posting.user.lname | uppercase}}</p>

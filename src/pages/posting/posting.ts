@@ -14,6 +14,7 @@ export class PostingPage {
   public _id: string;
   public isAnon: Boolean = false;
   comment: string;
+   public loading: boolean = true;
 
   constructor(private _nav: NavController,
     private _tokenservice: TokenService,
@@ -28,6 +29,7 @@ export class PostingPage {
     var postingId = this._navParams.get('postingId');
     this._postingservice.getPosting(postingId).subscribe(data => {
       this.posting = data;
+      this.loading = false;
     },
     err => alert(err));
   }
