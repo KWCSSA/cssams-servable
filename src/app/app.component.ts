@@ -29,37 +29,49 @@ export class MyApp {
     , private alertCtrl: AlertController, public push: Push) {
 
     platform.ready().then(() => {
+      this.initPush();
+      this.initToken();
+    });
+    StatusBar.styleDefault();
+  }
 
-      this.push.register().then((t: PushToken) => {
-        return this.push.saveToken(t);
-      }).then((t: PushToken) => {
-        this._tokenservice.setDeviceToken(t.token).then(() => {
-          console.log('Token saved:', t.token);
-        });
+  initPush() {
+    if (!this.platform.is('cordova')) {
+      console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
+      return;
+    }
+
+    this.push.register().then((t: PushToken) => {
+      return this.push.saveToken(t);
+    }).then((t: PushToken) => {
+      this._tokenservice.setDeviceToken(t.token).then(() => {
+        console.log('Token saved:', t.token);
       });
+    });
 
-      this.push.rx.notification()
-        .subscribe((msg) => {
-          var data = msg.raw.additionalData as any;
-          if (data.foreground) {
-            if (data.postingId) {
-              alert("You get a new comment in your post!");
-              this.nav.push(PostingPage, {postingId:data.postingId});
-            }
-          } else {
-            if (data.postingId) {
-              this.nav.push(PostingPage, {postingId:data.postingId});
-            }
+    this.push.rx.notification()
+      .subscribe((msg) => {
+        var data = msg.raw.additionalData as any;
+        if (data.foreground) {
+          if (data.postingId) {
+            alert("You get a new comment in your post!");
+            this.nav.push(PostingPage, {postingId:data.postingId});
           }
-      });
+        } else {
+          if (data.postingId) {
+            this.nav.push(PostingPage, {postingId:data.postingId});
+          }
+        }
+    });
+  }
 
-
-      _tokenservice.isLogon().then((token) => {
-        if(token) {
-        	this.storage.get('_id').then((id) => {
-          	this._tokenservice.setToken(token, id);
-          	this.logon = true;
-            	this.rootPage = TabsPage;
+  initToken() {
+    this._tokenservice.isLogon().then((token) => {
+      if(token) {
+        this.storage.get('_id').then((id) => {
+          this._tokenservice.setToken(token, id);
+          this.logon = true;
+            this.rootPage = TabsPage;
         });   
       }
       else {
@@ -67,9 +79,8 @@ export class MyApp {
         this.logon = false;
         this.rootPage  = LoginPage;
       }
-      });
     });
-    StatusBar.styleDefault();
   }
-  }
+ 
+}
 
