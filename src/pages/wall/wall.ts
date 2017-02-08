@@ -56,8 +56,7 @@ export class WallPage implements OnInit {
          toast.present();
          this.atBottom = true;
         }
-
-        this.postings = this.postings.concat(data);
+        if (data) this.postings = this.postings.concat(data);
         infiniteScroll.complete();
       });
     }
