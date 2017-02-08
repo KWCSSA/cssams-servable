@@ -125,7 +125,8 @@ export class CardPage {
   }
 
   downloadImage(url,name) {
-    if (!this._platform.is('ios') && !this._platform.is('android')) {
+    // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
+    if (!this._platform.is('cordova')) {
       this.localImageURL = url;
       return;
     }
@@ -134,10 +135,7 @@ export class CardPage {
     // let storage = new Storage(SqlStorage,{name:"_kwcssaStorage"});
     let targetPath; // storage location depends on device type.
 
-      // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
-      if(!this._platform.is('cordova')) {
-        return false;
-      }
+      
       if (this._platform.is('ios') || this._platform.is('android')) {
           targetPath = cordova.file.dataDirectory + name;
           fileTransfer.download(uri,
